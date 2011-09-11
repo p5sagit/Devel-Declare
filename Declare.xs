@@ -225,6 +225,8 @@ int dd_toke_scan_str(pTHX_ int offset) {
   if(SvPVX(PL_linestr) != old_pvx)
     croak("PL_linestr reallocated during scan_str, "
       "Devel::Declare can't continue");
+  if (!s)
+    return 0;
   if (s <= base_s) {
     s += SvCUR(line_copy);
     sv_catsv(line_copy, PL_linestr);
@@ -563,10 +565,13 @@ toke_move_past_token(int offset);
   OUTPUT:
     RETVAL
 
-int
+SV*
 toke_scan_str(int offset);
+  PREINIT:
+    int len;
   CODE:
-    RETVAL = dd_toke_scan_str(aTHX_ offset);
+    len = dd_toke_scan_str(aTHX_ offset);
+    RETVAL = len ? newSViv(len) : &PL_sv_undef;
   OUTPUT:
     RETVAL
 

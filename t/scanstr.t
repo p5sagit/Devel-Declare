@@ -14,7 +14,8 @@ sub my_quote_parser {
   my $content = Devel::Declare::get_lex_stuff();
   Devel::Declare::clear_lex_stuff();
   my $linestr = Devel::Declare::get_linestr();
-  die "suprising len=$len" if $len <= 0;
+  die "surprising len=undef" if !defined($len);
+  die "surprising len=$len" if $len <= 0;
   $content =~ s/(.)/sprintf("\\x{%x}", ord($1))/seg;
   substr $linestr, $offset, $len, "(\"$content\")";
   Devel::Declare::set_linestr($linestr);

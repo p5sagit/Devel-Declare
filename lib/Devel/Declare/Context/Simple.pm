@@ -110,7 +110,8 @@ sub strip_proto {
     Devel::Declare::clear_lex_stuff();
     $linestr = $self->get_linestr();
 
-    substr($linestr, $self->offset, $length) = '';
+    substr($linestr, $self->offset,
+      defined($length) ? $length : length($linestr)) = '';
     $self->set_linestr($linestr);
 
     return $proto;

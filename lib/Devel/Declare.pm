@@ -529,6 +529,10 @@ can't reliably get this from the buffer.  In fact, after the function
 returns, you can't rely on any content of the buffer preceding the end
 of the string.
 
+If the string being scanned is not well formed (has no closing delimiter),
+C<toke_scan_str> returns C<undef>.  In this case you cannot rely on the
+contents of the buffer.
+
 =head4 C<get_lex_stuff>
 
 This builtin returns what was matched by C<toke_scan_str>.  To avoid segfaults,
