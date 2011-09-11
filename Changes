@@ -1,5 +1,8 @@
 Changes for Devel-Declare
 
+  - Depend on B::Hooks::OP::Check version 0.19, which fixes a serious bug in
+    how it interacts with other modules that hook ops.
+
 0.006006 - 23 Aug 2011
   - Increase default linestr size to avoid reallocations (Zefram).
 

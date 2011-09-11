@@ -8,17 +8,17 @@ name 'Devel-Declare';
 all_from 'lib/Devel/Declare.pm';
 
 requires 'Scalar::Util' => 1.11; # set_prototype appeared in this version
-requires 'B::Hooks::OP::Check' => '0.18';
+requires 'B::Hooks::OP::Check' => '0.19';
 requires 'B::Hooks::EndOfScope' => '0.05';
 requires 'Sub::Name';
 
-build_requires 'B::Hooks::OP::Check' => '0.18';
+build_requires 'B::Hooks::OP::Check' => '0.19';
 
 # minimum version that works on Win32+gcc
 configure_requires 'ExtUtils::Depends' => 0.302;
 
 # minimum version that depends on ExtUtils::Depends 0.302
-configure_requires 'B::Hooks::OP::Check' => '0.18';
+configure_requires 'B::Hooks::OP::Check' => '0.19';
 
 test_requires 'Test::More' => '0.88';
 test_requires 'Test::Warn';
