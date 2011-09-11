@@ -218,10 +218,14 @@ int dd_toke_scan_ident(pTHX_ int offset) {
 }
 
 int dd_toke_scan_str(pTHX_ int offset) {
+  char* old_pvx = SvPVX(PL_linestr);
   STRLEN remaining = sv_len(PL_linestr) - offset;
   SV* line_copy = newSVsv(PL_linestr);
   char* base_s = SvPVX(PL_linestr) + offset;
   char* s = scan_str(base_s, FALSE, FALSE);
+  if(SvPVX(PL_linestr) != old_pvx)
+    croak("PL_linestr reallocated during scan_str, "
+      "Devel::Declare can't continue");
   if (s != base_s && sv_len(PL_lex_stuff) > remaining) {
     int ret = (s - SvPVX(PL_linestr)) + remaining;
     sv_catsv(line_copy, PL_linestr);
