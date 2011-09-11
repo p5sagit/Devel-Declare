@@ -220,7 +220,7 @@ int dd_toke_scan_ident(pTHX_ int offset) {
 int dd_toke_scan_str(pTHX_ int offset) {
   char* old_pvx = SvPVX(PL_linestr);
   STRLEN remaining = sv_len(PL_linestr) - offset;
-  SV* line_copy = newSVsv(PL_linestr);
+  SV* line_copy = sv_2mortal(newSVsv(PL_linestr));
   char* base_s = SvPVX(PL_linestr) + offset;
   char* s = scan_str(base_s, FALSE, FALSE);
   if(SvPVX(PL_linestr) != old_pvx)
@@ -230,7 +230,6 @@ int dd_toke_scan_str(pTHX_ int offset) {
     int ret = (s - SvPVX(PL_linestr)) + remaining;
     sv_catsv(line_copy, PL_linestr);
     dd_set_linestr(aTHX_ SvPV_nolen(line_copy));
-    SvREFCNT_dec(line_copy);
     return ret;
   }
   return s - base_s;
