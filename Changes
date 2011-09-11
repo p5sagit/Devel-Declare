@@ -2,6 +2,8 @@ Changes for Devel-Declare
 
   - Depend on B::Hooks::OP::Check version 0.19, which fixes a serious bug in
     how it interacts with other modules that hook ops.
+  - Adjust toke_scan_str logic to always show a positive effective length of
+    string source.
   - Detect and croak if unwanted reallocation occurs during toke_scan_str.
   - Avoid memory leak in toke_scan_str.
   - Add MYMETA.{json,yml} to MANIFEST.SKIP and .gitignore.
