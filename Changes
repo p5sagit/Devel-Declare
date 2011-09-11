@@ -2,6 +2,9 @@ Changes for Devel-Declare
 
   - Depend on B::Hooks::OP::Check version 0.19, which fixes a serious bug in
     how it interacts with other modules that hook ops.
+  - Initialize immediately upon loading the module, so that "was Devel::Declare
+    loaded soon enough" errors in string eval can be fixed by loading the
+    module earlier without having to also actually use the module earlier.
   - Adjust toke_scan_str logic to always show a positive effective length of
     string source.
   - Return undef from toke_scan_str if string was unterminated.

@@ -485,16 +485,10 @@ STATIC OP *dd_ck_const(pTHX_ OP *o, void *user_data) {
 
 #endif /* !DD_CONST_VIA_RV2CV */
 
-static int initialized = 0;
-
-MODULE = Devel::Declare  PACKAGE = Devel::Declare
-
-PROTOTYPES: DISABLE
-
-void
-setup()
-  CODE:
-  if (!initialized++) {
+STATIC void dd_initialize(pTHX) {
+  static int initialized = 0;
+  if (!initialized) {
+    initialized = 1;
 #if DD_GROW_VIA_BLOCKHOOK
     static BHK bhk;
 #if PERL_VERSION_GE(5,13,6)
@@ -511,7 +505,22 @@ setup()
     hook_op_check(OP_CONST, dd_ck_const, NULL);
 #endif /* !DD_CONST_VIA_RV2CV */
   }
-  filter_add(dd_filter_realloc, NULL);
+}
+
+MODULE = Devel::Declare  PACKAGE = Devel::Declare
+
+PROTOTYPES: DISABLE
+
+void
+initialize()
+  CODE:
+    dd_initialize(aTHX);
+
+void
+setup()
+  CODE:
+    dd_initialize(aTHX);
+    filter_add(dd_filter_realloc, NULL);
 
 char*
 get_linestr()

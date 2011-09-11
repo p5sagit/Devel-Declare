@@ -20,6 +20,8 @@ bootstrap Devel::Declare;
 
 @ISA = ();
 
+initialize();
+
 sub import {
   my ($class, %args) = @_;
   my $target = caller;
