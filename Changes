@@ -10,6 +10,7 @@ Changes for Devel-Declare
   - Return undef from toke_scan_str if string was unterminated.
   - Detect and croak if unwanted reallocation occurs during toke_scan_str.
   - Avoid memory leak in toke_scan_str.
+  - Give Devel::Declare::Context::Simple a version number.
   - Add MYMETA.{json,yml} to MANIFEST.SKIP and .gitignore.
 
 0.006006 - 23 Aug 2011
