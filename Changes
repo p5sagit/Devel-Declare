@@ -1,5 +1,6 @@
 Changes for Devel-Declare
 
+0.006007 - 12 Sep 2011
   - Depend on B::Hooks::OP::Check version 0.19, which fixes a serious bug in
     how it interacts with other modules that hook ops.
   - Initialize immediately upon loading the module, so that "was Devel::Declare
