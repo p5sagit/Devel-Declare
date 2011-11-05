@@ -1,5 +1,6 @@
 Changes for Devel-Declare
 
+0.006008 - 05 Nov 2011
   - Adjust toke_scan_str logic to always leave the prefix part of
     linestr unchanged.
 
