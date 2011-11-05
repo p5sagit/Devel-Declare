@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 5;
+use Test::More tests => 20;
 
 # This test script is derived from a MooseX::Method::Signatures test,
 # which is sensitive to some details of Devel::Declare behaviour that
@@ -31,6 +31,7 @@ sub mtfnpy_parser(@) {
     die "No name\n" unless defined $name;
     my $proto  = $ctx->strip_proto;
     die "Wrong declarator\n" unless $ctx->declarator eq "mtfnpy";
+    $proto =~ s/\n/\\n/g;
     $ctx->inject_if_block(qq[BEGIN { @{[__PACKAGE__]}::inject_after_scope(', q[${name}]);') } unshift \@_, "${proto}";], "(sub ");
     my $compile_stash = $ctx->get_curstash_name;
     $ctx->shadow(sub {
@@ -56,5 +57,39 @@ mtfnpy foo (extra) {
 }
 
 foo(qw(a b c));
+
+mtfnpy bar (ex
+tra) {
+    is scalar(@_), 4;
+    is $_[0], "ex\ntra";
+    is $_[1], "a";
+    is $_[2], "b";
+    is $_[3], "c";
+}
+
+bar(qw(a b c));
+
+mtfnpy baz (ex
+tra extra extra) {
+    is scalar(@_), 4;
+    is $_[0], "ex\ntra extra extra";
+    is $_[1], "a";
+    is $_[2], "b";
+    is $_[3], "c";
+}
+
+baz(qw(a b c));
+
+mtfnpy quux (ex
+tra
+extra) {
+    is scalar(@_), 4;
+    is $_[0], "ex\ntra\nextra";
+    is $_[1], "a";
+    is $_[2], "b";
+    is $_[3], "c";
+}
+
+quux(qw(a b c));
 
 1;

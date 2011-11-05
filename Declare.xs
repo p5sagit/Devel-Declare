@@ -227,7 +227,7 @@ int dd_toke_scan_str(pTHX_ int offset) {
       "Devel::Declare can't continue");
   if (!s)
     return 0;
-  if (s <= base_s) {
+  if (s <= base_s || memcmp(SvPVX(line_copy), SvPVX(PL_linestr), offset)) {
     s += SvCUR(line_copy);
     sv_catsv(line_copy, PL_linestr);
     dd_set_linestr(aTHX_ SvPV_nolen(line_copy));
