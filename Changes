@@ -1,5 +1,8 @@
 Changes for Devel-Declare
 
+  - Fix a C declaration after statement, which broke compatibility with
+    older compilers (Jan Dubois).
+
 0.006008 - 05 Nov 2011
   - Adjust toke_scan_str logic to always leave the prefix part of
     linestr unchanged.

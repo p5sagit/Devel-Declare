@@ -490,13 +490,15 @@ STATIC void dd_initialize(pTHX) {
   if (!initialized) {
     initialized = 1;
 #if DD_GROW_VIA_BLOCKHOOK
-    static BHK bhk;
+    {
+      static BHK bhk;
 #if PERL_VERSION_GE(5,13,6)
-    BhkENTRY_set(&bhk, bhk_start, dd_block_start);
+      BhkENTRY_set(&bhk, bhk_start, dd_block_start);
 #else /* <5.13.6 */
-    BhkENTRY_set(&bhk, start, dd_block_start);
+      BhkENTRY_set(&bhk, start, dd_block_start);
 #endif /* <5.13.6 */
-    Perl_blockhook_register(aTHX_ &bhk);
+      Perl_blockhook_register(aTHX_ &bhk);
+    }
 #else /* !DD_GROW_VIA_BLOCKHOOK */
     hook_op_check(OP_ENTEREVAL, dd_ck_entereval, NULL);
 #endif /* !DD_GROW_VIA_BLOCKHOOK */
