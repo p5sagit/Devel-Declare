@@ -63,6 +63,7 @@ int dd_is_declarator(pTHX_ char* name) {
   HV* is_declarator_pack_hash;
   SV** is_declarator_flag_ref;
   int dd_flags;
+  char* curstash_name;
 
   is_declarator = get_hv("Devel::Declare::declarators", FALSE);
 
@@ -71,11 +72,12 @@ int dd_is_declarator(pTHX_ char* name) {
 
   /* $declarators{$current_package_name} */
 
-  if (!HvNAME(PL_curstash))
+  curstash_name = HvNAME(PL_curstash);
+  if (!curstash_name)
     return -1;
 
-  is_declarator_pack_ref = hv_fetch(is_declarator, HvNAME(PL_curstash),
-                             strlen(HvNAME(PL_curstash)), FALSE);
+  is_declarator_pack_ref = hv_fetch(is_declarator, curstash_name,
+                             strlen(curstash_name), FALSE);
 
   if (!is_declarator_pack_ref || !SvROK(*is_declarator_pack_ref))
     return -1; /* not a hashref */
@@ -149,14 +151,17 @@ void dd_set_linestr(pTHX_ char* new_value) {
   PL_bufend = SvPVX(PL_linestr) + new_len;
 
   if ( DD_DEBUG_UPDATED_LINESTR && PERLDB_LINE && PL_curstash != PL_debstash) {
-    // Cribbed from toke.c
-    SV * const sv = NEWSV(85,0);
+    /* Cribbed from toke.c */
+    AV *fileav = CopFILEAV(&PL_compiling);
+    if (fileav) {
+      SV * const sv = NEWSV(85,0);
 
-    sv_upgrade(sv, SVt_PVMG);
-    sv_setpvn(sv,PL_bufptr,PL_bufend-PL_bufptr);
-    (void)SvIOK_on(sv);
-    SvIV_set(sv, 0);
-    av_store(CopFILEAV(&PL_compiling),(I32)CopLINE(&PL_compiling),sv);
+      sv_upgrade(sv, SVt_PVMG);
+      sv_setpvn(sv,PL_bufptr,PL_bufend-PL_bufptr);
+      (void)SvIOK_on(sv);
+      SvIV_set(sv, 0);
+      av_store(fileav,(I32)CopLINE(&PL_compiling),sv);
+    }
   }
 }
 
@@ -352,7 +357,7 @@ OP* dd_pp_entereval(pTHX) {
   const char* s;
   SV *sv;
 #ifdef PERL_5_9_PLUS
-  SV *saved_hh;
+  SV *saved_hh = NULL;
   if (PL_op->op_private & OPpEVAL_HAS_HH) {
     saved_hh = POPs;
   }
