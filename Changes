@@ -1,5 +1,6 @@
 Changes for Devel-Declare
 
+0.006009 - 01 Feb 2012
   - Be adaptive about whether to delete the line reallocation filter,
     so as to play as nicely as possible with other kinds of source filter.
   - Document that injecting newlines doesn't work.
