@@ -471,6 +471,10 @@ This builtin returns the full text of the current line of the source document.
 =head4 C<set_linestr>
 
 This builtin sets the full text of the current line of the source document.
+Beware that injecting a newline into the middle of the line is likely
+to fail in surprising ways.  Generally, Perl's parser can rely on the
+`current line' actually being only a single line.  Use other kinds of
+whitespace instead, in the code that you inject.
 
 =head3 C<skipspace>
 

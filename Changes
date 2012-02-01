@@ -1,5 +1,6 @@
 Changes for Devel-Declare
 
+  - Document that injecting newlines doesn't work.
   - Fix a C declaration after statement, which broke compatibility with
     older compilers (Jan Dubois).
   - Partially work around unexported core symbols affecting Perl 5.8 on
