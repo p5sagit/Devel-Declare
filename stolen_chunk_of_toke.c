@@ -108,6 +108,20 @@ STATIC char*    S_scan_word(pTHX_ char *s, char *dest, STRLEN destlen, int allow
 #define PERL_5_9_PLUS
 #endif
 
+#ifndef PERL_5_9_PLUS
+/* These two are not exported from the core on Windows.  With 5.9+
+   it's not an issue, because they're part of the PL_parser structure,
+   which is exported.  On multiplicity/thread builds we can work
+   around the lack of export by this formulation, where we provide
+   a substitute implementation of the unexported accessor functions.
+   On single-interpreter builds we can't, because access is directly
+   via symbols that are not exported.  */
+# define Perl_Ilinestart_ptr my_Ilinestart_ptr
+char **my_Ilinestart_ptr(pTHX) { return &(aTHX->Ilinestart); }
+# define Perl_Isublex_info_ptr my_Isublex_info_ptr
+static SUBLEXINFO *my_Isublex_info_ptr(pTHX) { return &(aTHX->Isublex_info); }
+#endif
+
 #ifdef PERL_5_9_PLUS
 /* 5.9+ moves a bunch of things to a PL_parser struct so we need to
    declare the backcompat macros for things to still work (mst) */
