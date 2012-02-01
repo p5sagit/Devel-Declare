@@ -1,5 +1,7 @@
 Changes for Devel-Declare
 
+  - Be adaptive about whether to delete the line reallocation filter,
+    so as to play as nicely as possible with other kinds of source filter.
   - Document that injecting newlines doesn't work.
   - Fix a C declaration after statement, which broke compatibility with
     older compilers (Jan Dubois).

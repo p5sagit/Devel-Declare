@@ -399,9 +399,23 @@ STATIC OP *dd_ck_entereval(pTHX_ OP *o, void *user_data) {
 
 static I32 dd_filter_realloc(pTHX_ int idx, SV *sv, int maxlen)
 {
+  SV *filter_datasv;
   const I32 count = FILTER_READ(idx+1, sv, maxlen);
   SvGROW(sv, DD_PREFERRED_LINESTR_SIZE);
-  /* filter_del(dd_filter_realloc); */
+  /* Filters can only be deleted in the correct order (reverse of the
+     order in which they were added).  Insisting on deleting the filter
+     here would break if another filter were added after ours and is
+     still around.  Not deleting the filter at all would break if another
+     filter were added earlier and attempts to delete itself later.
+     We can play nicely to the maximum possible extent by deleting our
+     filter iff it is currently deletable (i.e., it is on the top of
+     the filter stack).  Can still run into trouble in more complex
+     situations, but can't avoid that. */
+  if (PL_rsfp_filters && AvFILLp(PL_rsfp_filters) >= 0 &&
+      (filter_datasv = FILTER_DATA(AvFILLp(PL_rsfp_filters))) &&
+      IoANY(filter_datasv) == FPTR2DPTR(void *, dd_filter_realloc)) {
+    filter_del(dd_filter_realloc);
+  }
   return count;
 }
 
