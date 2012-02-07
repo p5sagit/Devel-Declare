@@ -1,5 +1,8 @@
 Changes for Devel-Declare
 
+  - Fix workaround for unexported core symbols to avoid breaking
+    compilation on non-threading builds of Perl 5.8.
+
 0.006009 - 01 Feb 2012
   - Be adaptive about whether to delete the line reallocation filter,
     so as to play as nicely as possible with other kinds of source filter.

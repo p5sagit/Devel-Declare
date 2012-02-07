@@ -108,7 +108,7 @@ STATIC char*    S_scan_word(pTHX_ char *s, char *dest, STRLEN destlen, int allow
 #define PERL_5_9_PLUS
 #endif
 
-#ifndef PERL_5_9_PLUS
+#if !defined(PERL_5_9_PLUS) && defined(PERL_IMPLICIT_CONTEXT)
 /* These two are not exported from the core on Windows.  With 5.9+
    it's not an issue, because they're part of the PL_parser structure,
    which is exported.  On multiplicity/thread builds we can work
