@@ -2,6 +2,8 @@ Changes for Devel-Declare
 
   - Fix workaround for unexported core symbols to avoid breaking
     compilation on non-threading builds of Perl 5.8.
+  - Set permissions on .perldb file created during test, to avoid
+    "insecure rcfile" warning.
 
 0.006009 - 01 Feb 2012
   - Be adaptive about whether to delete the line reallocation filter,

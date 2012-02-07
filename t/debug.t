@@ -17,6 +17,7 @@ $ENV{DD_DEBUG} = 1;
 cwd("$Bin/..");
 
 # Write a .perldb file so we make sure we dont use the users one
+umask 077;
 open PERLDB, ">", "$Bin/../.perldb" or die "Cannot open $Bin/../.perldb: $!";
 close PERLDB;
 
