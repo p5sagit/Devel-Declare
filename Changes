@@ -1,5 +1,8 @@
 Changes for Devel-Declare
 
+  - Avoid using Test::Warn, which has previously been a troublesome
+    dependency.
+
 0.006010 - 07 Feb 2012
   - Fix workaround for unexported core symbols to avoid breaking
     compilation on non-threading builds of Perl 5.8.

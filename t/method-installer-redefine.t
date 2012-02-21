@@ -1,7 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 4;
-use Test::Warn;
+use Test::More tests => 5;
 use Devel::Declare::MethodInstaller::Simple;
 
 BEGIN {
@@ -25,18 +24,20 @@ method foo {
     $_[0]->method
 }
 
-use Test::Warn;
-
 ok(main->can('foo'), 'foo() installed at runtime');
 
-warnings_like {
-    method foo {
-        $_[0]->method;
-    }
-} qr/redefined/;
+my @warnings;
+$SIG{__WARN__} = sub { push @warnings, $_[0] };
 
-warnings_are {
-    method_quiet foo {
-        $_[0]->method;
-    }
-} [], 'no warnings';
+@warnings = ();
+method foo {
+$_[0]->method;
+}
+is scalar(@warnings), 1;
+like $warnings[0], qr/redefined/;
+
+@warnings = ();
+method_quiet foo {
+$_[0]->method;
+}
+is_deeply \@warnings, [];
