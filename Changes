@@ -3,18 +3,18 @@ Changes for Devel-Declare
 0.006012 - 2013-06-18
   - Updates for some deprecations in perl 5.17. (Zefram, RT#83968)
 
-0.006011 - 22 Feb 2012
+0.006011 - 2012-02-22
   - In XS, use PERL_NO_GET_CONTEXT for efficiency.
   - Avoid using Test::Warn, which has previously been a troublesome
     dependency.
 
-0.006010 - 07 Feb 2012
+0.006010 - 2012-02-07
   - Fix workaround for unexported core symbols to avoid breaking
     compilation on non-threading builds of Perl 5.8.
   - Set permissions on .perldb file created during test, to avoid
     "insecure rcfile" warning.
 
-0.006009 - 01 Feb 2012
+0.006009 - 2012-02-01
   - Be adaptive about whether to delete the line reallocation filter,
     so as to play as nicely as possible with other kinds of source filter.
   - Document that injecting newlines doesn't work.
@@ -24,11 +24,11 @@ Changes for Devel-Declare
     Windows (David Bouyssie).
   - Jump through some hoops to avoid compiler warnings.
 
-0.006008 - 05 Nov 2011
+0.006008 - 2011-11-05
   - Adjust toke_scan_str logic to always leave the prefix part of
     linestr unchanged.
 
-0.006007 - 12 Sep 2011
+0.006007 - 2011-09-12
   - Depend on B::Hooks::OP::Check version 0.19, which fixes a serious bug in
     how it interacts with other modules that hook ops.
   - Initialize immediately upon loading the module, so that "was Devel::Declare
@@ -42,66 +42,66 @@ Changes for Devel-Declare
   - Give Devel::Declare::Context::Simple a version number.
   - Add MYMETA.{json,yml} to MANIFEST.SKIP and .gitignore.
 
-0.006006 - 23 Aug 2011
+0.006006 - 2011-08-23
   - Increase default linestr size to avoid reallocations (Zefram).
 
-0.006005 - 06 Jul 2011
+0.006005 - 2011-07-06
   - Add a flag for controlling 'redefined' warnings when installing subs into
     namespaces (clkao).
 
-0.006004 - 02 May 2011
+0.006004 - 2011-05-02
   - Bail out earlier when being called while not lexing (Zefram).
   - Make sure we continue working with Devel::CallParser loaded (Zefram).
 
-0.006003 - 12 Apr 2011
+0.006003 - 2011-04-12
   - Fix test-failures on old perl versions (Zefram).
 
-0.006002 - 08 Apr 2011
+0.006002 - 2011-04-08
   - Re-add Support for very early growing of PL_linestr using filters (Zefram).
 
-0.006001 - 26 Feb 2011
+0.006001 - 2011-02-26
   - Support perl >= 5.13.7 by re-allocating PL_linestr in block hooks (Zefram).
 
-0.006000 - 09 Mar 2010
+0.006000 - 2010-03-09
   - Make things work on perl 5.11.2 and newer (Zefram).
 
-0.005011 - 14 Aug 2009
+0.005011 - 2009-08-14
   - Add tests for not interpreting various things as barewords when they
     aren't.
   - Depend on a Test::More with done_testing support.
   - Don't invoke the const callback for a keyword followed by a fat comma.
 
-0.005010 - 11 Aug 2009
+0.005010 - 2009-08-11
   - Don't invoke the linestr callback if we found a keyword and the bufptr
     still contains an arrow at its beginning. This causes the linestr callback
     not to be fired on things like "->method" (if method is a declarator).
     While this might be useful, it mostly caused problems so far. It might be
     added again later as a separate feature.
 
-0.005009 - 10 Aug 2009
+0.005009 - 2009-08-10
   - Stop mixing declarations with code. (Closes: RT#48548) (Cosimo Streppone)
   - Move strip_attrs, which is a purely parsing method, from
     MethodInstaller::Simple to Context::Simple (nperez).
 
-0.005008 - 27 Jul 2009
+0.005008 - 2009-07-27
   - Depend on the latest ExtUtils::Depends for win32+gcc support.
   - Conditionally expand linestrings under perl debugger.
 
-0.005007 - 13 Jul 2009
+0.005007 - 2009-07-13
   - Fix line numbers not being updated from skipspace calls
 
-0.005006 - 16 Jun 2009
+0.005006 - 2009-06-16
   - Fix compilation on 5.8 perls.
 
-0.005005 - 05 Jun 2009
+0.005005 - 2009-06-05
   - Improve compatibility with MAD-enabled perls
     (Reini Urban, Closes RT#45779).
 
-0.005004 - 03 Jun 2009
+0.005004 - 2009-06-03
   - Don't redefine MEM_WRAP_CHECK_ if it's already defined, getting rid of
     compilation errors on some perls (Maik Fischer).
 
-0.005003 - 24 May 2009
+0.005003 - 2009-05-24
   - Failing tests for line number issues (Ash Berlin).
   - Add strip_names_and_args (Cory Watson).
   - Various pod fixes (Yanick Champoux, Florian Ragwitz).
