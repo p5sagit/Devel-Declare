@@ -30,7 +30,7 @@ $SIG{ALRM} = sub {
 alarm 10;
 my $output = `$^X -d t/debug.pl`;
 
-like($output, qr/method new {}, sub {my \$self = shift;/,
+like($output, qr/method new \{\}, sub \{my \$self = shift;/,
   "replaced line string visible in debug lines");
 
 done_testing;

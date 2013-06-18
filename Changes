@@ -1,5 +1,7 @@
 Changes for Devel-Declare
 
+  - Updates for some deprecations in perl 5.17. (Zefram, RT#83968)
+
 0.006011 - 22 Feb 2012
   - In XS, use PERL_NO_GET_CONTEXT for efficiency.
   - Avoid using Test::Warn, which has previously been a troublesome

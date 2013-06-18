@@ -186,6 +186,21 @@ static SUBLEXINFO *my_Isublex_info_ptr(pTHX) { return &(aTHX->Isublex_info); }
 #define SvPV_nolen_const SvPV_nolen
 #endif
 
+/* Name changed in 5.17; use new name in our code.  Apparently we're meant
+   to use something else instead, but no non-underscored way to achieve
+   this is apparent.  */
+
+#ifndef _is_utf8_mark
+#define _is_utf8_mark is_utf8_mark
+#endif
+
+/* utf8_to_uvchr_buf() not defined in earlier perls, but less-capable
+ * substitute is available */
+
+#ifndef utf8_to_uvchr_buf
+#define utf8_to_uvchr_buf(s, e, lp) ((e), utf8_to_uvchr(s, lp))
+#endif
+
 /* and now we're back to the toke.c stuff again (mst) */
 
 static const char ident_too_long[] =
@@ -433,7 +448,7 @@ S_scan_word(pTHX_ register char *s, char *dest, STRLEN destlen, int allow_packag
 	}
 	else if (UTF && UTF8_IS_START(*s) && isALNUM_utf8((U8*)s)) {
 	    char *t = s + UTF8SKIP(s);
-	    while (UTF8_IS_CONTINUED(*t) && is_utf8_mark((U8*)t))
+	    while (UTF8_IS_CONTINUED(*t) && _is_utf8_mark((U8*)t))
 		t += UTF8SKIP(t);
 	    if (d + (t - s) > e)
 		Perl_croak(aTHX_ ident_too_long);
@@ -629,7 +644,7 @@ S_scan_str(pTHX_ char *start, int keep_quoted, int keep_delims)
 	termlen = 1;
     }
     else {
-	termcode = utf8_to_uvchr((U8*)s, &termlen);
+	termcode = utf8_to_uvchr_buf((U8*)s, PL_bufend, &termlen);
 	Copy(s, termstr, termlen, U8);
 	if (!UTF8_IS_INVARIANT(term))
 	    has_utf8 = TRUE;
@@ -919,7 +934,7 @@ S_scan_ident(pTHX_ register char *s, register const char *send, char *dest, STRL
 	    }
 	    else if (UTF && UTF8_IS_START(*s) && isALNUM_utf8((U8*)s)) {
 		char *t = s + UTF8SKIP(s);
-		while (UTF8_IS_CONTINUED(*t) && is_utf8_mark((U8*)t))
+		while (UTF8_IS_CONTINUED(*t) && _is_utf8_mark((U8*)t))
 		    t += UTF8SKIP(t);
 		if (d + (t - s) > e)
 		    Perl_croak(aTHX_ ident_too_long);
@@ -973,7 +988,7 @@ S_scan_ident(pTHX_ register char *s, register const char *send, char *dest, STRL
 		e = s;
 		while ((e < send && isALNUM_lazy_if(e,UTF)) || *e == ':') {
 		    e += UTF8SKIP(e);
-		    while (e < send && UTF8_IS_CONTINUED(*e) && is_utf8_mark((U8*)e))
+		    while (e < send && UTF8_IS_CONTINUED(*e) && _is_utf8_mark((U8*)e))
 			e += UTF8SKIP(e);
 		}
 		Copy(s, d, e - s, char);
