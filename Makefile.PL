@@ -22,7 +22,8 @@ configure_requires 'B::Hooks::OP::Check' => '0.19';
 
 test_requires 'Test::More' => '0.88';
 
-repository 'git://github.com/rafl/devel-declare.git';
+# r/w: p5sagit@git.shadowcat.co.uk:devel-declare.git
+repository 'git://git.shadowcat.co.uk/p5sagit/devel-declare.git';
 
 postamble(<<'EOM');
 $(OBJECT) : stolen_chunk_of_toke.c
