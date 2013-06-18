@@ -1,5 +1,6 @@
 Changes for Devel-Declare
 
+0.006012 - 2013-06-18
   - Updates for some deprecations in perl 5.17. (Zefram, RT#83968)
 
 0.006011 - 22 Feb 2012
