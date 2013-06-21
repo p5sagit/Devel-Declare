@@ -2,12 +2,8 @@ use strict;
 use warnings;
 use Test::More;
 
-BEGIN {
-  eval 'use B::Compiling';
-
-  $@ and plan 'skip_all' => $@
-      or plan tests => 5;
-}
+use Test::Requires 'B:Compiling';
+plan tests => 5;
 
 my @lines;
 

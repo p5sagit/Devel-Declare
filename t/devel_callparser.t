@@ -1,15 +1,10 @@
 use warnings;
 use strict;
 
-BEGIN {
-	eval { require Devel::CallParser };
-	if($@ ne "") {
-		require Test::More;
-		Test::More::plan(skip_all => "Devel::CallParser unavailable");
-	}
-}
+use Test::More;
+use Test::Requires 'Devel::CallParser';
 
-use Test::More tests => 1;
+plan tests => 1;
 
 use Devel::CallParser ();
 

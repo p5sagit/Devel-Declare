@@ -21,6 +21,7 @@ configure_requires 'ExtUtils::Depends' => 0.302;
 configure_requires 'B::Hooks::OP::Check' => '0.19';
 
 test_requires 'Test::More' => '0.88';
+test_requires 'Test::Requires' => '0';
 
 # r/w: p5sagit@git.shadowcat.co.uk:Devel-Declare.git
 repository 'git://git.shadowcat.co.uk/p5sagit/Devel-Declare.git';

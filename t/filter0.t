@@ -1,17 +1,13 @@
 use warnings;
 use strict;
 
-BEGIN {
-	eval { require Filter::Util::Call };
-	if($@ ne "") {
-		require Test::More;
-		Test::More::plan(skip_all => "Filter::Util::Call unavailable");
-	}
-}
+use Test::More;
+use Test::Requires 'Filter::Util::Call';
+
+plan tests => 2;
 
 use Devel::Declare ();
 use Filter::Util::Call qw(filter_add filter_del);
-use Test::More tests => 2;
 
 sub my_quote($) { $_[0] }
 
