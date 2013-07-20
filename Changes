@@ -1,5 +1,7 @@
 Changes for Devel-Declare
 
+  - converted dist to Distar
+
 0.006013   2013-06-18
   - re-release, because Module::Install is AWESOME!
 
