@@ -55,7 +55,6 @@ WriteMakefile(
         },
     },
 
-    C => [ 'stolen_chunk_of_toke.c' ],
     XS => { 'Declare.xs' => 'Declare.c' },
 
     $pkg->get_makefile_vars,
