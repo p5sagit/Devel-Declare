@@ -6,4 +6,7 @@ author 'Matt S Trout - <mst@shadowcat.co.uk> - original author';
 
 manifest_include(
   't/smells-of-vcs' => qr{.*},
+  't' => '.pm',
+  't' => '.pl',
+  '' => qr{stolen_chunk_of_toke\.c|Declare\.xs},
 );
