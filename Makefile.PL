@@ -46,6 +46,7 @@ WriteMakefile(
     $mymeta_works ? (BUILD_REQUIRES => \%TEST_DEPS) : (),
 
     META_MERGE => {
+        'meta-spec' => { version => 2 },
         dynamic_config => 0,
 
         resources => {
