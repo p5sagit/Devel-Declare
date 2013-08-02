@@ -23,7 +23,7 @@ sub MY::postamble {
 
 WriteMakefile(
     NAME => 'Devel::Declare',
-    AUTHOR => ['Matt S Trout - <mst@shadowcat.co.uk> - original author'],
+    AUTHOR => 'Matt S Trout - <mst@shadowcat.co.uk> - original author',
     VERSION_FROM => 'lib/Devel/Declare.pm',
     MIN_PERL_VERSION => '5.008001',
 
