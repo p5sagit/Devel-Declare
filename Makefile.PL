@@ -48,11 +48,17 @@ WriteMakefile(
     META_MERGE => {
         'meta-spec' => { version => 2 },
         dynamic_config => 0,
-
         resources => {
             # r/w: p5sagit@git.shadowcat.co.uk:Devel-Declare.git
-            repository => 'git://git.shadowcat.co.uk/p5sagit/Devel-Declare.git',
-            homepage => 'http://git.shadowcat.co.uk/gitweb/gitweb.cgi?p=p5sagit/Devel-Declare.git',
+            repository => {
+                url => 'git://git.shadowcat.co.uk/p5sagit/Devel-Declare.git',
+                web => 'http://git.shadowcat.co.uk/gitweb/gitweb.cgi?p=p5sagit/Devel-Declare.git',
+                type => 'git',
+            },
+            bugtracker => {
+                mailto => 'bug-Devel-Declare@rt.cpan.org',
+                web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=Devel-Declare',
+            },
         },
     },
 
