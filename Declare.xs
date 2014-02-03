@@ -257,9 +257,9 @@ static void call_done_declare(pTHX) {
   if (DD_DEBUG_TRACE) {
     printf("Deconstructing declare\n");
     printf("PL_bufptr: %s\n", PL_bufptr);
-    printf("bufend at: %i\n", PL_bufend - PL_bufptr);
+    printf("bufend at: %i\n", (int)(PL_bufend - PL_bufptr));
     printf("linestr: %s\n", SvPVX(PL_linestr));
-    printf("linestr len: %i\n", PL_bufend - SvPVX(PL_linestr));
+    printf("linestr len: %i\n", (int)(PL_bufend - SvPVX(PL_linestr)));
   }
 
   ENTER;
@@ -274,10 +274,10 @@ static void call_done_declare(pTHX) {
 
   if (DD_DEBUG_TRACE) {
     printf("PL_bufptr: %s\n", PL_bufptr);
-    printf("bufend at: %i\n", PL_bufend - PL_bufptr);
+    printf("bufend at: %i\n", (int)(PL_bufend - PL_bufptr));
     printf("linestr: %s\n", SvPVX(PL_linestr));
-    printf("linestr len: %i\n", PL_bufend - SvPVX(PL_linestr));
-    printf("actual len: %i\n", strlen(PL_bufptr));
+    printf("linestr len: %i\n", (int)(PL_bufend - SvPVX(PL_linestr)));
+    printf("actual len: %i\n", (int)strlen(PL_bufptr));
   }
 }
 
