@@ -1,5 +1,6 @@
 Revision history for Devel-Declare
 
+0.006015 - 2014-02-02
   - fix use of wrong sprintf formatting codes (Zefram, RT#91983)
 
 0.006014 - 2013-07-21
