@@ -62,6 +62,7 @@ WriteMakefile(
         },
     },
 
+    C => [ 'Declare.c' ],
     XS => { 'Declare.xs' => 'Declare.c' },
 
     $pkg->get_makefile_vars,
