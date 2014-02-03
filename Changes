@@ -1,4 +1,4 @@
-Changes for Devel-Declare
+Revision history for Devel-Declare
 
   - fix use of wrong sprintf formatting codes (Zefram, RT#91983)
 
