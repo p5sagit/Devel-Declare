@@ -1,5 +1,5 @@
 use Devel::Declare ();
-use Test::More qw(no_plan);
+use Test::More;
 
 {
   package FoomHandlers;
@@ -101,3 +101,5 @@ use Test::More qw(no_plan);
 
   ::is(foom KABOOM (zoom), "happy foom: KABOOM; zoom", "foom KABOOM (zoom)");
 }
+
+done_testing;

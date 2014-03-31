@@ -64,7 +64,7 @@ my ($test_method1, $test_method2, @test_list);
 
 }
 
-use Test::More 'no_plan';
+use Test::More;
 
 my $o = DeclareTest->new(attr => "value");
 
@@ -87,3 +87,5 @@ is($o->$test_method1('no', 'yes'), 'value, yes', 'anon method with @_ ok');
 is($o->$test_method2('this'), 'DeclareTest2, this', 'anon method with proto ok');
 
 #warn map { $_->() } @test_list;
+
+done_testing;

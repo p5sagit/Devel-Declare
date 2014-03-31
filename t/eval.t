@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More 'no_plan';
+use Test::More;
 
 sub method {
   my ($usepack, $name, $inpack, $sub) = @_;
@@ -22,4 +22,4 @@ diag $@ if $@;
 
 is( __PACKAGE__->bar, 42 );
 
-
+done_testing;

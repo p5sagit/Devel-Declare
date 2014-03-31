@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More 'no_plan';
+use Test::More;
 
 sub class { $_[0]->(); }
 
@@ -20,3 +20,5 @@ class Foo::Bar {
 
 is($packname, 'Foo::Bar', 'Package saved ok');
 is(__PACKAGE__, 'main', 'Package scoped correctly');
+
+done_testing;

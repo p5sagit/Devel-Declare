@@ -131,7 +131,7 @@ my ($test_method1, $test_method2, @test_list);
 
 }
 
-use Test::More 'no_plan';
+use Test::More;
 
 my $o = DeclareTest->new(attr => "value");
 
@@ -171,3 +171,4 @@ is($o->$test_method2('this'), 'DeclareTest2, this', 'anon method with proto ok')
 
 is_deeply([ map { $_->() } @test_list ], [ 1, 2, 3, 4], 'binding ok');
 
+done_testing;

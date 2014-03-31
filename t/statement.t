@@ -1,5 +1,5 @@
 use Devel::Declare ();
-use Test::More qw(no_plan);
+use Test::More;
 
 {
   package FoomHandlers;
@@ -110,3 +110,5 @@ use Test::More qw(no_plan);
 
   ::ok(1, 'Compiled as statement ok');
 }
+
+done_testing;

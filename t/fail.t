@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More 'no_plan';
+use Test::More;
 
 use Devel::Declare::MethodInstaller::Simple;
 BEGIN {
@@ -29,3 +29,5 @@ TODO: {
     eval 'method møø() { return "foo" }';
     like($@, qr/Illegal\sdeclaration\sof\ssubroutine\smain\:\:m/, 'with unicode');
 };
+
+done_testing;

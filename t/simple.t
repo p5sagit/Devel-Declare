@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More 'no_plan';
+use Test::More;
 
 sub method {
   my ($usepack, $name, $inpack, $sub) = @_;
@@ -34,3 +34,4 @@ __PACKAGE__->baz(qw(3 4));
 is($args1, 'main, 1, 2', 'Method bar args ok');
 is($args2, 'main, 3, 4', 'Method baz args ok');
 
+done_testing;

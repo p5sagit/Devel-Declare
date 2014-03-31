@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More 'no_plan';
+use Test::More;
 
 sub method :lvalue {my $sv;}
 
@@ -29,3 +29,5 @@ method wahey () {
 };
 
 ok(1, "Survived compilation");
+
+done_testing;

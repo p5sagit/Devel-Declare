@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More 'no_plan';
+use Test::More;
 
 sub fun :lvalue { return my $sv; }
 
@@ -24,3 +24,5 @@ my $foo = fun ($a, $b) { "woot" };
 
 is($foo->(), '$a, $b: woot', 'proto declarator ok');
 is(X(), 'what?', 'X sub restored ok');
+
+done_testing;

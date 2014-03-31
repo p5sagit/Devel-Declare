@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More 'no_plan';
+use Test::More;
 
 sub action (&) { return shift; }
 
@@ -20,3 +20,5 @@ my $a = action {
 $a->("SELF", "CONTEXT");
 
 is($args, "SELF, CONTEXT", "args passed ok");
+
+done_testing;
