@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use Test::More;
 
-use Test::Requires 'B:Compiling';
+use Test::Requires 'B::Compiling';
 plan tests => 5;
 
 my @lines;
