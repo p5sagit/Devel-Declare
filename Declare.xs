@@ -283,11 +283,26 @@ static void call_done_declare(pTHX) {
 
 static int dd_handle_const(pTHX_ char *name);
 
+#ifdef CV_NAME_NOTQUAL /* 5.21.5 */
+# define Gv_or_CvNAME(g) (isGV(g) \
+               ? GvNAME(g) \
+               : SvPV_nolen(cv_name((CV *)SvRV(g), NULL, CV_NAME_NOTQUAL)))
+#elif defined(CvNAMED) /* 5.21.4 */
+# define Gv_or_CvNAME(g) (isGV(g) \
+                            ? GvNAME(g) \
+                            : CvNAMED(SvRV(g)) \
+                                ? HEK_KEY(CvNAME_HEK((CV *)SvRV(g))) \
+                                : GvNAME(CvGV(SvRV(g))))
+#else
+# define Gv_or_CvNAME(g) GvNAME(g)
+#endif
+
 /* replacement PL_check rv2cv entry */
 
 STATIC OP *dd_ck_rv2cv(pTHX_ OP *o, void *user_data) {
   OP* kid;
   int dd_flags;
+  char *gvname;
 
   PERL_UNUSED_VAR(user_data);
 
@@ -304,11 +319,17 @@ STATIC OP *dd_ck_rv2cv(pTHX_ OP *o, void *user_data) {
   if (kid->op_type != OP_GV) /* not a GV so ignore */
     return o;
 
+  if (!isGV(kGVOP_gv)
+   && (!SvROK(kGVOP_gv) || SvTYPE(SvRV(kGVOP_gv)) != SVt_PVCV))
+    return o;
+
+  gvname = Gv_or_CvNAME(kGVOP_gv);
+
   if (DD_DEBUG_TRACE) {
-    printf("Checking GV %s -> %s\n", HvNAME(GvSTASH(kGVOP_gv)), GvNAME(kGVOP_gv));
+    printf("Checking GV %s -> %s\n", HvNAME(GvSTASH(kGVOP_gv)), gvname);
   }
 
-  dd_flags = dd_is_declarator(aTHX_ GvNAME(kGVOP_gv));
+  dd_flags = dd_is_declarator(aTHX_ gvname);
 
   if (dd_flags == -1)
     return o;
@@ -320,23 +341,23 @@ STATIC OP *dd_ck_rv2cv(pTHX_ OP *o, void *user_data) {
 
 #if DD_CONST_VIA_RV2CV
   if (PL_expect != XOPERATOR) {
-    if (!dd_handle_const(aTHX_ GvNAME(kGVOP_gv)))
+    if (!dd_handle_const(aTHX_ Gv_or_CvNAME(kGVOP_gv)))
       return o;
     CopLINE(PL_curcop) = PL_copline;
     /* The parser behaviour that we're simulating depends on what comes
        after the declarator. */
-    if (*skipspace(PL_bufptr + strlen(GvNAME(kGVOP_gv))) != '(') {
+    if (*skipspace(PL_bufptr + strlen(gvname)) != '(') {
       if (in_declare) {
         call_done_declare(aTHX);
       } else {
-        dd_linestr_callback(aTHX_ "rv2cv", GvNAME(kGVOP_gv));
+        dd_linestr_callback(aTHX_ "rv2cv", gvname);
       }
     }
     return o;
   }
 #endif /* DD_CONST_VIA_RV2CV */
 
-  dd_linestr_callback(aTHX_ "rv2cv", GvNAME(kGVOP_gv));
+  dd_linestr_callback(aTHX_ "rv2cv", gvname);
 
   return o;
 }
