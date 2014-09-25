@@ -1,5 +1,8 @@
 Revision history for Devel-Declare
 
+  - fix for changes in 5.21.4 (Avoid creating GVs when subs are declared),
+    RT#99102, Father Chrysostomos
+
 0.006016 - 2014-03-31
   - fixed syntax error in a test
 
