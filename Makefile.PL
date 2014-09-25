@@ -65,8 +65,6 @@ WriteMakefile(
     C => [ 'Declare.c' ],
     XS => { 'Declare.xs' => 'Declare.c' },
 
-    realclean => { FILES => 'Distar/' },
-
     $pkg->get_makefile_vars,
 );
 
