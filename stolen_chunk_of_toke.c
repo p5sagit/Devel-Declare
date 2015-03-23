@@ -342,7 +342,7 @@ S_skipspace(pTHX_ register char *s, int incline)
 	 * of the buffer, we're not reading from a source filter, and
 	 * we're in normal lexing mode
 	 */
-	if (s < PL_bufend || !PL_rsfp || PL_sublex_info.sub_inwhat ||
+	if (s < PL_bufend || !PL_rsfp || PL_lex_inwhat ||
 		PL_lex_state == LEX_FORMLINE)
 	    return s;
 
