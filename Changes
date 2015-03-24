@@ -1,5 +1,6 @@
 Revision history for Devel-Declare
 
+0.006018 - 2015-03-24
   - tests fixed for blead (5.21.*) (Matthew Horsfall, RT#102918)
 
 0.006017 - 2014-09-25
