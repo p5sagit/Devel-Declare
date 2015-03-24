@@ -1,5 +1,7 @@
 Revision history for Devel-Declare
 
+  - tests fixed for blead (5.21.*) (Matthew Horsfall, RT#102918)
+
 0.006017 - 2014-09-25
   - fix for changes in 5.21.4 (Avoid creating GVs when subs are declared),
     RT#99102, Father Chrysostomos
