@@ -4,7 +4,7 @@ use warnings;
 use Test::More 0.88;
 
 BEGIN {
-  if($] eq "5.011002") {
+  if("$]" eq "5.011002") {
     plan skip_all => "line debugging broken on 5.11.2";
   }
 }
