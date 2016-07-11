@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More;
+use Test::More 0.88;
 
 our $i;
 BEGIN { $i = 0 };

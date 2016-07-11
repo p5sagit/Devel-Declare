@@ -133,7 +133,7 @@ my ($test_method1, $test_method2, @test_list);
 
 }
 
-use Test::More;
+use Test::More 0.88;
 
 my $o = DeclareTest->new(attr => "value");
 

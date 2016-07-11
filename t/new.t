@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use Devel::Declare ();
-use Test::More;
+use Test::More 0.88;
 
 {
   package FoomHandlers;
