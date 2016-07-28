@@ -1,4 +1,4 @@
-package t::early1_x;
+package early1_x;
 use strict;
 use warnings;
 sub import {
