@@ -17,10 +17,6 @@ my %TEST_DEPS = (
 # have to do this since old EUMM dev releases miss the eval $VERSION line
 my $mymeta_works = do { no warnings; $ExtUtils::MakeMaker::VERSION >= 6.5707 };
 
-sub MY::postamble {
-    '$(OBJECT) : stolen_chunk_of_toke.c'
-}
-
 WriteMakefile(
     NAME => 'Devel::Declare',
     AUTHOR => 'Matt S Trout - <mst@shadowcat.co.uk> - original author',
@@ -83,6 +79,7 @@ WriteMakefile(
 
     C => [ 'Declare.c' ],
     XS => { 'Declare.xs' => 'Declare.c' },
+    depend => { '$(OBJECT)' => 'stolen_chunk_of_toke.c' },
 
     $pkg->get_makefile_vars,
 );
