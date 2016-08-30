@@ -8,9 +8,10 @@
 /pm_to_blib
 /_eumm/
 !/.gitignore
-*.bs
-/xs/*.c
-*.o
+/*.bs
+/*.c
+/*.o
+!/stolen_chunk_of_toke.c
 /cover_db/
 *.gc??
 /test-mydeps-*
