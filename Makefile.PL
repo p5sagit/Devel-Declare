@@ -75,6 +75,7 @@ WriteMakefile(
             'Nick Perez <nperez@cpan.org>',
             'Yanick Champoux <yanick@babyl.dyndns.org>',
         ],
+        x_deprecated => 1,
     },
 
     C => [ 'Declare.c' ],
