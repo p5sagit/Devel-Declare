@@ -2,6 +2,8 @@ Revision history for Devel-Declare
 
   - added deprecated flag to metadata. No deprecation warning is given at
     runtime... for now...
+  - added "WARNING" section in pod, advising the deprecated status of this
+    module
 
 0.006018 - 2015-03-24
   - tests fixed for blead (5.21.*) (Matthew Horsfall, RT#102918)

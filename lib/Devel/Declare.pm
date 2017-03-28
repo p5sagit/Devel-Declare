@@ -309,6 +309,36 @@ over Perl's parser, allowing the creation of new syntax.
 
 This document describes how to create a simple declarator.
 
+=head1 WARNING
+
+=for comment mst wrote this warning for MooseX::Declare, and ether adapted it for here:
+
+B<Warning:> Devel::Declare is a giant bag of crack
+originally implemented by mst with the goal of upsetting the perl core
+developers so much by its very existence that they implemented proper
+keyword handling in the core.
+
+As of perl5 version 14, this goal has been achieved, and modules such
+as L<Devel::CallParser>, L<Function::Parameters>, and L<Keyword::Simple> provide
+mechanisms to mangle perl syntax that don't require hallucinogenic
+drugs to interpret the error messages they produce.
+
+If you are using something that uses Devel::Declare, please for the love
+of kittens use something else:
+
+=over 4
+
+=item *
+
+Instead of L<TryCatch>, use L<Try::Tiny>
+
+=item *
+
+Instead of L<Method::Signatures>, use
+L<real subroutine signatures|perlsub/Signatures> (requires perl 5.22) or L<Moops>
+
+=back
+
 =head1 USAGE
 
 We'll demonstrate the usage of C<Devel::Declare> with a motivating example: a new
