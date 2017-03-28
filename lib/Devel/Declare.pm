@@ -1,5 +1,5 @@
 package Devel::Declare;
-# ABSTRACT: Adding keywords to perl, in perl
+# ABSTRACT: (DEPRECATED) Adding keywords to perl, in perl
 
 use strict;
 use warnings;
