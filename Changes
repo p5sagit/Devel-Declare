@@ -1,5 +1,7 @@
 Revision history for Devel-Declare
 
+  - update to work with Perl 5.31.7 (Karl Williamson, github PR#1)
+
 0.006019 - 2017-03-28
   - added deprecated flag to metadata. No deprecation warning is given at
     runtime... for now...
