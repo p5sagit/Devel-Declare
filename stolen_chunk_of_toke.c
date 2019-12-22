@@ -1010,8 +1010,8 @@ S_scan_ident(pTHX_ register char *s, register const char *send, char *dest, STRL
 	    d++;
 	    if (UTF) {
 		e = s;
-		while (  (   e < send
-                          && isIDFIRST_utf8_safe(e, send)
+		while ( ((   e < send
+                          && isIDFIRST_utf8_safe(e, send))
                        || *e == ':'))
                 {
 		    e += UTF8SKIP(e);
