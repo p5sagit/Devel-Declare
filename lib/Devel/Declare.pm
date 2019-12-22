@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use 5.008001;
 
-our $VERSION = '0.006_020';
+our $VERSION = '0.006_021';
 
 bootstrap Devel::Declare;
 $VERSION =~ tr/_//d;
