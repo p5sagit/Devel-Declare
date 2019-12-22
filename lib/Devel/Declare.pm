@@ -13,7 +13,7 @@ use constant DECLARE_PROTO => 2;
 use constant DECLARE_NONE => 4;
 use constant DECLARE_PACKAGE => 8+1; # name implicit
 
-use vars qw(%declarators %declarator_handlers @ISA);
+our (%declarators, %declarator_handlers, @ISA);
 use base qw(DynaLoader);
 use Scalar::Util 'set_prototype';
 use B::Hooks::OP::Check 0.19;
