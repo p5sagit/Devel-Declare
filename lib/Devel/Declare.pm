@@ -6,6 +6,8 @@ use warnings;
 use 5.008001;
 
 our $VERSION = '0.006_020';
+
+bootstrap Devel::Declare;
 $VERSION =~ tr/_//d;
 
 use constant DECLARE_NAME => 1;
@@ -17,8 +19,6 @@ our (%declarators, %declarator_handlers, @ISA);
 use base qw(DynaLoader);
 use Scalar::Util 'set_prototype';
 use B::Hooks::OP::Check 0.19;
-
-bootstrap Devel::Declare;
 
 @ISA = ();
 

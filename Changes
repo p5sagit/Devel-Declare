@@ -1,5 +1,7 @@
 Revision history for Devel-Declare
 
+  - use ppport.h for compatibility with earlier perls
+
 0.006_020 - 2019-11-25
   - update to work with Perl 5.31.7 (Karl Williamson, github PR#1)
 

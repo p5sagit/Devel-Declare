@@ -17,6 +17,8 @@
  *   up but if it does blame me (Matt S Trout), not the poor original authors
  */
 
+#include "ppport.h"
+
 /* the following #defines are stolen from assorted headers, not toke.c (mst) */
 
 #define skipspace(a)            S_skipspace(aTHX_ a, 0)
