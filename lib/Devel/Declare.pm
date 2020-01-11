@@ -1,5 +1,4 @@
 package Devel::Declare;
-# ABSTRACT: (DEPRECATED) Adding keywords to perl, in perl
 
 use strict;
 use warnings;
@@ -289,7 +288,7 @@ sub linestr_callback {
 
 =head1 NAME
 
-Devel::Declare - Adding keywords to perl, in perl
+Devel::Declare - (DEPRECATED) Adding keywords to perl, in perl
 
 =head1 SYNOPSIS
 
