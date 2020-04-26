@@ -1,5 +1,7 @@
 Revision history for Devel-Declare
 
+  - release 0.006_021 as stable
+
 0.006_021 - 2019-12-22
   - use ppport.h for compatibility with earlier perls
 
