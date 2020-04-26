@@ -24,8 +24,7 @@ WriteMakefile(
     MIN_PERL_VERSION => '5.008001',
 
     CONFIGURE_REQUIRES => {
-        # minimum version that works on Win32+gcc
-        'ExtUtils::Depends' => 0.302,
+        'ExtUtils::Depends' => 0.8000,
 
         # minimum version that depends on ExtUtils::Depends 0.302
         'B::Hooks::OP::Check' => '0.19',
