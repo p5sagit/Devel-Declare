@@ -87,3 +87,5 @@ WriteMakefile(
     $pkg->get_makefile_vars,
 );
 
+print STDERR "------- finished Makefile.PL\n";
+
