@@ -17,6 +17,10 @@ my %TEST_DEPS = (
 # have to do this since old EUMM dev releases miss the eval $VERSION line
 my $mymeta_works = do { no warnings; $ExtUtils::MakeMaker::VERSION >= 6.5707 };
 
+use Data::Dumper;
+local $Data::Dumper::Sortkeys = 1;
+print STDERR "------------- calling WriteMakefile(): ExUtils::Depends get_makefile_vars says ", Dumper({ $pkg->get_makefile_vars });
+
 WriteMakefile(
     NAME => 'Devel::Declare',
     AUTHOR => 'Matt S Trout - <mst@shadowcat.co.uk> - original author',
