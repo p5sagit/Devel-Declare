@@ -29,7 +29,7 @@ before_install:
   - source ~/travis-perl-helpers/init
   - build-perl
   - perl -V
-  - cpan-install B::Hooks::OP::Check ExtUtils::Depends
+  - cpan-install --reinstall B::Hooks::OP::Check ExtUtils::Depends
   - build-dist
   - cd $BUILD_DIR
 install:
