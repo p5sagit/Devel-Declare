@@ -32,7 +32,7 @@ env:
     - RELEASE_TESTING=0
 before_install:
   - perl -V
-  - cpan-install B::Hooks::OP::Check ExtUtils::Depends
+  - cpanm B::Hooks::OP::Check ExtUtils::Depends
 script:
   - perl Makefile.PL
   - make
