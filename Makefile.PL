@@ -26,8 +26,7 @@ WriteMakefile(
     CONFIGURE_REQUIRES => {
         'ExtUtils::Depends' => 0.8000,
 
-        # minimum version that depends on ExtUtils::Depends 0.302
-        'B::Hooks::OP::Check' => '0.19',
+        'B::Hooks::OP::Check' => '0.22',
     },
 
     PREREQ_PM => {
