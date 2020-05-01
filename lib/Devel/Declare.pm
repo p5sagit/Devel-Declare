@@ -330,7 +330,7 @@ of kittens use something else:
 
 =item *
 
-Instead of L<TryCatch>, use L<Try::Tiny>
+Instead of L<TryCatch>, use L<Syntax::Keyword::Try> or L<Try::Tiny>
 
 =item *
 
@@ -338,6 +338,10 @@ Instead of L<Method::Signatures>, use
 L<real subroutine signatures|perlsub/Signatures> (requires perl 5.22) or L<Moops>
 
 =back
+
+If you are a maintainer of something that uses Devel::Declare itself, please take a look at the
+more modern and robust alternatives, such as L<Keyword::Declare>, L<Keyword::Simple> or using
+L<perlapi/PL_keyword_plugin> in XS directly.
 
 =head1 USAGE
 
